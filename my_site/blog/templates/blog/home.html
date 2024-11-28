@@ -1,0 +1,30 @@
+﻿{% extends "blog/base.html" %}
+
+  
+    {% block content %}
+      <h1>Последние записи блога</h1>
+      <a href="{% url 'blog-post' %}">
+        <div class="post">
+            <div>
+              <p class="date">Дата</p>
+              <h2>Заголовок поста</h2>
+              <p>Краткое описание поста ...</p>
+            </div>
+          
+        </div>
+      </a>
+      <a href="{% url 'blog-post' %}">
+        <div class="post">
+            <div>
+              <p class="date">Дата</p>
+              <h2>Заголовок поста</h2>
+              <p>Краткое описание поста ...</p>
+            </div>
+          
+        </div>
+      </a>
+
+    {% endblock content %}
+
+
+
