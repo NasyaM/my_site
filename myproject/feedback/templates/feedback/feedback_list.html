@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .feedback-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feedback-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .feedback-item:last-child {
+            border-bottom: none;
+        }
+
+        .feedback-name {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #007BFF;
+        }
+
+        .feedback-email {
+            font-style: italic;
+            color: #666;
+        }
+
+        .feedback-text {
+            margin-top: 10px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            margin-bottom: 15px;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-container input, 
+        .form-container textarea {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-container button {
+            padding: 10px 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-container">
+        <h1>Отзывы</h1>
+
+        {% for feedback in feedbacks %}
+            <div class="feedback-item">
+                <div class="feedback-name">{{ feedback.full_name }}</div>
+                <div class="feedback-email">{{ feedback.email }}</div>
+                <div class="feedback-text">{{ feedback.text }}</div>
+            </div>
+        {% empty %}
+            <p>Отзывов пока нет.</p>
+        {% endfor %}
+    </div>
+
+    <div class="form-container">
+        <h2>Оставить отзыв</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="full_name">Ваше имя</label>
+                <input type="text" id="full_name" name="full_name" required>
+            </div>
+            <div class="form-group">
+                <label for="full_name">Электроннная почта</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="text">Отзыв</label>
+                <textarea id="text" name="text" rows="4" required></textarea>
+            </div>
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+</body>
+</html>
